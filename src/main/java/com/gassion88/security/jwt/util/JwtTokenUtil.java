@@ -47,7 +47,13 @@ public class JwtTokenUtil {
                 .setSigningKey(secret)
                 .parseClaimsJwt(token)
                 .getBody();
+    }
 
+    public String getUsernameFromToken(String token) {
+        return getClaimsFromToken(token).getSubject();
+    }
 
+    public List<String> getRolesFromToken(String token) {
+        return getClaimsFromToken(token).get("roles", List.class);
     }
 }
