@@ -1,5 +1,6 @@
 package com.gassion88.security.jwt.util;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -39,5 +40,14 @@ public class JwtTokenUtil {
                 .setExpiration(expiredDate)
                 .signWith(SignatureAlgorithm.HS256, secret)
                 .compact();
+    }
+
+    public Claims getClaimsFromToken(String token) {
+        return Jwts.parser()
+                .setSigningKey(secret)
+                .parseClaimsJwt(token)
+                .getBody();
+
+
     }
 }
