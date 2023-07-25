@@ -11,7 +11,6 @@ import java.security.Principal;
 @RequestMapping()
 @RequiredArgsConstructor
 public class MainController {
-
     @GetMapping("/unsecured")
     public String unsecuredData() {
         return "Unsecured Data";
