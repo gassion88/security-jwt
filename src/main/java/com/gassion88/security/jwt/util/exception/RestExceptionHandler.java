@@ -16,4 +16,9 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<ErrorResponseDTO> badCredentialsException () {
         return new ResponseEntity<>(new ErrorResponseDTO(HttpStatus.UNAUTHORIZED.value(), "Bad Credentials"), HttpStatus.UNAUTHORIZED);
     }
+
+    @ExceptionHandler( NameAlreadyTakenException.class )
+    public ResponseEntity<ErrorResponseDTO> nameAlreadyTakenException (Exception e) {
+        return new ResponseEntity<>(new ErrorResponseDTO(HttpStatus.BAD_REQUEST.value(), e.getMessage()), HttpStatus.BAD_REQUEST);
+    }
 }
